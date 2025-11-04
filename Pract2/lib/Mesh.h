@@ -1,0 +1,19 @@
+#pragma once
+#include <memory>
+#include "Buffer.h"
+#include <utility>
+#include <vector>
+
+class Mesh {
+	typedef std::pair<std::shared_ptr<Buffer>, std::shared_ptr<Shader>> buffSha;
+
+public:
+	void addBuffer(const std::shared_ptr<Buffer>& buffer, const std::shared_ptr<Shader>& shader = nullptr);
+	size_t getNumBuffers() const;
+	const std::shared_ptr<Buffer>& getBuffer(size_t index) const;
+	std::shared_ptr<Buffer>& getBuffer(size_t index);
+	void draw();
+
+private:
+	std::vector<buffSha> m_listBuffers;
+};
